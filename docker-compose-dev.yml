@@ -28,7 +28,7 @@ services:
 
 
   g3w-suite:
-    image: zamuzakki/g3w-suite-docker-default:v3.8.5
+    image: zamuzakki/g3w-suite-docker-default:v3.8.5-1.2
     environment:
       - DISPLAY=:99
       - G3WSUITE_TILECACHE_PATH
@@ -54,6 +54,10 @@ services:
       - QGIS_SERVER_LOG_LEVEL
       - G3WSUITE_ADMIN_USERNAME
       - G3WSUITE_ADMIN_PASSWORD
+      - G3WSUITE_QGIS_AUTH_PASSWORD_FILE
+      - G3WSUITE_QGIS_AUTH_DB_DIR_PATH
+      - QGIS_AUTH_PASSWORD_FILE
+      - QGIS_AUTH_DB_DIR_PATH
     expose:
       - "8000"
     ports:
