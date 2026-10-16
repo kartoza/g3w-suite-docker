@@ -77,6 +77,13 @@ FILEMANAGER_ROOT_PATH = os.getenv(
     'G3WSUITE_FILEMANAGER_ROOT_PATH', '/shared-volume')
 FILENAMANAGER_MAX_N_FILES = os.getenv('G3WSUITE_FILENAMANAGER_MAX_N_FILES', 10)
 
+# Keep Django's temporary upload files on the shared volume (same filesystem as
+# the filemanager root) so large uploads are moved, not copied, and don't fill
+# the container's ephemeral storage.
+FILE_UPLOAD_TEMP_DIR = os.getenv(
+    'G3WSUITE_FILE_UPLOAD_TEMP_DIR', '/shared-volume/.upload_tmp')
+os.makedirs(FILE_UPLOAD_TEMP_DIR, exist_ok=True)
+
 # EDITING SETTINGS
 # ======================================
 USER_MEDIA_ROOT = FILEMANAGER_ROOT_PATH + '/' + \
