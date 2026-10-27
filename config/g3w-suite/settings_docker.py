@@ -135,6 +135,25 @@ HUEY = {
     },
 }
 
+CLIENT_OWS_METHOD = 'POST'
+
+# The entrypoint exports QGIS_SERVER_PARALLEL_RENDERING=1, which allocates a
+# full-size image per layer on every GetMap (~1 GB per worker on projects with
+# ~100 layers). Settings load before QGIS Server reads it, so override here.
+os.environ['QGIS_SERVER_PARALLEL_RENDERING'] = '0'
+
+# G3W's defaults strip <img>, so admin "Credits" HTML can't show a logo.
+# Same lists as base settings plus img and basic sizing/alignment.
+BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a', 'br', 'table', 'tr', 'td', 'th', 'ul', 'li', 'ol',
+                       'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'pre', 'blockquote', 'tbody', 'theader', 'tfooter', 'span',
+                       'img']
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style', 'src', 'target', 'alt', 'width', 'height']
+BLEACH_ALLOWED_STYLES = ['background-color', 'color', 'font-size', 'text-align', 'width', 'height', 'margin']
+
+# OSM's tile usage policy requires a Referer from web apps; with Django's
+# default 'same-origin' the browser sends none and gets an "Access blocked" tile.
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
 USE_X_FORWARDED_HOST = True
 
 ALLOWED_HOSTS = ["*"]
@@ -273,5 +292,19 @@ CONSTANCE_CONFIG = {
     )
 }
 
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
+FRONTEND = True
+FRONTEND_APP = 'frontend'
 FRONTEND = True
 FRONTEND_APP = 'frontend'
